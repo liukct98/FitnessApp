@@ -8,7 +8,9 @@ body {
   background-color: #ffffff;
   flex-direction: column;
   text-align: center;
-  background: url(res/iconApp.webp);
+  background: url(res/sfondo.jpg) no-repeat center center; /* Aggiunto no-repeat e center */
+  background-size: cover; /* Aggiunto cover per mantenere le proporzioni dell'immagine */
+  background-size: contain
 }
 
 h1 {
