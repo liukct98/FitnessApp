@@ -1,3 +1,8 @@
+.headLunedi {
+  display: flex;
+  justify-content: center;
+}
+
 .Bmodifica {
   padding: 10px;
   margin: 5px;
@@ -5,9 +10,10 @@
   border-radius: 4px;
   cursor: pointer;
   background-color: rgb(227, 213, 24);
-  padding: 0;
 }
-.headLunedi {
+
+.contButton {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
+  align-items: flex-start;
 }
