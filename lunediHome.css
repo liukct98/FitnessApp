@@ -1,0 +1,13 @@
+.Bmodifica {
+  padding: 10px;
+  margin: 5px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: rgb(227, 213, 24);
+  padding: 0;
+}
+.headLunedi {
+  display: flex;
+  justify-content: center;
+}

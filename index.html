@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,14 +12,19 @@
             margin: 0;
             padding: 20px;
             text-align: center;
+            background-image: url(res/sfondo.jpg);
+            background-size: cover;
         }
+
         h1 {
             color: #333;
         }
+
         .day {
             display: inline-block;
             margin: 10px;
         }
+
         .day img {
             width: 150px;
             height: 150px;
@@ -27,9 +33,11 @@
             cursor: pointer;
             transition: transform 0.2s;
         }
+
         .day img:hover {
             transform: scale(1.1);
         }
+
         .day-label {
             margin-top: 8px;
             font-weight: bold;
@@ -37,27 +45,29 @@
         }
     </style>
 </head>
+
 <body>
 
-<h1>Programma della Palestra</h1>
-<div class="day">
-    <a href="lunedi.html">
-        <img src="lunedi.jpg" alt="Lunedì">
-        <div class="day-label">Lunedì</div>
-    </a>
-</div>
-<div class="day">
-    <a href="mercoledi.html">
-        <img src="mercoledi.jpg" alt="Mercoledì">
-        <div class="day-label">Mercoledì</div>
-    </a>
-</div>
-<div class="day">
-    <a href="venerdi.html">
-        <img src="venerdi.jpg" alt="Venerdì">
-        <div class="day-label">Venerdì</div>
-    </a>
-</div>
+    <h1>Programma della Palestra</h1>
+    <div class="day">
+        <a href="lunediHome.html">
+            <img src="lunedi.jpg" alt="Lunedì">
+            <div class="day-label">Lunedì</div>
+        </a>
+    </div>
+    <div class="day">
+        <a href="mercoledi.html">
+            <img src="mercoledi.jpg" alt="Mercoledì">
+            <div class="day-label">Mercoledì</div>
+        </a>
+    </div>
+    <div class="day">
+        <a href="venerdi.html">
+            <img src="venerdi.jpg" alt="Venerdì">
+            <div class="day-label">Venerdì</div>
+        </a>
+    </div>
 
 </body>
+
 </html>
