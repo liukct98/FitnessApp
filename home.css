@@ -1,0 +1,52 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  text-align: center;
+  background-image: url(res/sfondo.jpg);
+  background-size: 100vw 100vh;
+}
+
+h1 {
+  color: white;
+  background-color: #333;
+  padding: 5px;
+  border: 1px solid white;
+  border-radius: 10px;
+}
+
+.day {
+  display: inline-block;
+  margin: 20px;
+}
+
+.day-label {
+  margin-top: 8px;
+  font-weight: bold;
+  color: #333;
+  background-color: white;
+  border: 1px solid #333;
+  padding: 5px;
+  text-decoration: underline;
+  border-radius: 10px;
+}
+
+.motivatore {
+  font-size: 30px;
+  color: white;
+  line-height: 1.6; /* Altezza della linea per migliorare leggibilità */
+  background: linear-gradient(90deg, #4d1b89, #a26aba); /* Sfondo sfumato */
+  border-radius: 10px; /* Angoli arrotondati */
+  padding: 15px;
+  margin-top: 60px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border: 1px solid #333;
+  opacity: 0; /* Inizialmente invisibile */
+  animation: fadeIn 1s ease-in-out 1s forwards; /* Ritardo di 1 secondo */
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1; /* Appare completamente */
+  }
+}

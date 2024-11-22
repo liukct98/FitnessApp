@@ -19,7 +19,7 @@ function loadWelcomeMessage() {
 
 // Funzione per accedere alla schermata principale
 function accessApp() {
-  window.location.href = "index.html";
+  window.location.href = "home.html";
 }
 
 // Carica il messaggio di benvenuto al caricamento della pagina
