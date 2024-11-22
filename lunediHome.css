@@ -1,3 +1,6 @@
+body {
+  font-family: Arial, sans-serif;
+}
 .headLunedi {
   display: flex;
   justify-content: center;
@@ -11,6 +14,7 @@
   border-radius: 4px;
   cursor: pointer;
   background-color: rgb(227, 213, 24);
+  color: black;
 }
 
 ul {
@@ -26,6 +30,7 @@ ul {
   border-radius: 4px;
   cursor: pointer;
   background-color: rgb(243, 5, 5);
+  color: #333;
 }
 li {
   list-style-type: none;
