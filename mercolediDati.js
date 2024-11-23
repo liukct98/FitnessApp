@@ -78,7 +78,7 @@ function saveExercises() {
     });
 
   // Salva gli esercizi con una chiave univoca per l'utente
-  localStorage.setItem(`exercises_${userName}`, JSON.stringify(exercises));
+  localStorage.setItem(`exercises_mercoledi_${userName}`, JSON.stringify(exercises));
   alert("Esercizi salvati per Mercoledi!");
 }
 

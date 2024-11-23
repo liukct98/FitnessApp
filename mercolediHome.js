@@ -12,7 +12,7 @@ function loadExercises() {
   }
 
   const exercises = JSON.parse(
-    localStorage.getItem(`exercises_${userName}`) || "[]"
+    localStorage.getItem(`exercises_mercoledi_${userName}`) || "[]"
   );
 
   if (exercises.length === 0) {
