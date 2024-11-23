@@ -21,10 +21,9 @@ div {
 h1 {
   font-size: 2.8rem;
   color: #333;
-  background-color: white;
-  border: 1px solid #333;
-  padding: 8px;
-  text-decoration: underline;
+  background-color: #28a745;
+  color: white;
+  border: none;
   border-radius: 10px;
   margin-top: 20px;
   padding: 10px 20px;
