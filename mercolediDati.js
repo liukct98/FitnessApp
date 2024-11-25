@@ -1,6 +1,13 @@
 // Funzione per aggiungere una nuova riga di esercizio
 function addExercise(
-  exercise = { name: "", reps: "", sets: "", weight: "", sec: "", image: "" }
+  exercise = {
+    name: "",
+    reps: "",
+    sets: "",
+    weight: "",
+    sec: "",
+    image: "",
+  }
 ) {
   const exerciseList = document.getElementById("exercise-list");
   const exerciseDiv = document.createElement("div");
@@ -78,7 +85,10 @@ function saveExercises() {
     });
 
   // Salva gli esercizi con una chiave univoca per l'utente
-  localStorage.setItem(`exercises_mercoledi_${userName}`, JSON.stringify(exercises));
+  localStorage.setItem(
+    `exercises_mercoledi_${userName}`,
+    JSON.stringify(exercises)
+  );
   alert("Esercizi salvati per Mercoledi!");
 }
 
@@ -91,7 +101,7 @@ function loadExercises() {
   }
 
   const exercises = JSON.parse(
-    localStorage.getItem(`exercises_${userName}`) || "[]"
+    localStorage.getItem(`exercises_mercoledi_${userName}`) || "[]"
   );
   exercises.forEach((exercise) => {
     addExercise(exercise);
