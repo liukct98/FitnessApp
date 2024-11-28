@@ -3,6 +3,21 @@ function getCurrentUser() {
   return localStorage.getItem("username");
 }
 
+// Funzione per salvare lo stato dei checkbox
+function saveCheckboxState() {
+  const checkboxes = document.querySelectorAll(".exercise-checkbox");
+  const checkboxStates = Array.from(checkboxes).map(
+    (checkbox) => checkbox.checked
+  );
+  const userName = getCurrentUser();
+  if (userName) {
+    localStorage.setItem(
+      `checkboxStates_${userName}`,
+      JSON.stringify(checkboxStates)
+    ); // **SALVATAGGIO**
+  }
+}
+
 // Funzione per caricare gli esercizi da localStorage e mostrarli
 function loadExercises() {
   const userName = getCurrentUser();
@@ -15,13 +30,17 @@ function loadExercises() {
     localStorage.getItem(`exercises_${userName}`) || "[]"
   );
 
+  const savedCheckboxStates = JSON.parse(
+    localStorage.getItem(`checkboxStates_${userName}`) || "[]"
+  ); // **RECUPERO STATO**
+
   if (exercises.length === 0) {
     document.getElementById("exercise-list").innerHTML =
       "<p>Nessun esercizio salvato.</p>";
     return;
   }
 
-  exercises.forEach((exercise) => {
+  exercises.forEach((exercise, index) => {
     const exerciseDiv = document.createElement("div");
     exerciseDiv.className = "exercise";
     exerciseDiv.innerHTML = `
@@ -36,12 +55,15 @@ function loadExercises() {
                   : ""
               }
                 <label>
-            <input type="checkbox" class="exercise-checkbox">
+            <input type="checkbox" class="exercise-checkbox" ${
+              savedCheckboxStates[index] ? "checked" : ""
+            }> <!-- **APPLICAZIONE STATO** -->
             Fatto
         </label>
           `;
     document.getElementById("exercise-list").appendChild(exerciseDiv);
   });
+
   // Creazione del bottone di reset
   const resetButton = document.createElement("button");
   resetButton.textContent = "Reset";
@@ -50,6 +72,7 @@ function loadExercises() {
   resetButton.style.marginBottom = "20px";
   resetButton.style.transform = "scale(1.5)";
   resetButton.style.marginLeft = "10px";
+  resetButton.style.color = "black";
   document.getElementById("exercise-list").appendChild(resetButton);
 
   // Funzione per resettare tutte le checkbox
@@ -58,6 +81,12 @@ function loadExercises() {
     checkboxes.forEach((checkbox) => {
       checkbox.checked = false;
     });
+    saveCheckboxState(); // **AGGIORNAMENTO STATO**
+  });
+
+  // Salvataggio dello stato quando un checkbox viene cliccato
+  document.querySelectorAll(".exercise-checkbox").forEach((checkbox) => {
+    checkbox.addEventListener("change", saveCheckboxState); // **EVENTO**
   });
 }
 

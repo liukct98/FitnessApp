@@ -48,6 +48,7 @@ label {
   padding: 20px;
   font-size: 20px;
   cursor: pointer;
+  gap: 5px;
 }
 .exercise-checkbox {
   transform: scale(1.5);
