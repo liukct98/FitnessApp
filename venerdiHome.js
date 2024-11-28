@@ -35,8 +35,29 @@ function loadExercises() {
                     ? `<img src="${exercise.image}" alt="Immagine Esercizio" style="max-width: 200px;">`
                     : ""
                 }
+                                <label>
+            <input type="checkbox" class="exercise-checkbox">
+            Fatto
+        </label>
             `;
     document.getElementById("exercise-list").appendChild(exerciseDiv);
+  });
+  // Creazione del bottone di reset
+  const resetButton = document.createElement("button");
+  resetButton.textContent = "Reset";
+  resetButton.id = "reset-button";
+  resetButton.style.marginTop = "20px";
+  resetButton.style.marginBottom = "20px";
+  resetButton.style.transform = "scale(1.5)";
+  resetButton.style.marginLeft = "10px";
+  document.getElementById("exercise-list").appendChild(resetButton);
+
+  // Funzione per resettare tutte le checkbox
+  resetButton.addEventListener("click", () => {
+    const checkboxes = document.querySelectorAll(".exercise-checkbox");
+    checkboxes.forEach((checkbox) => {
+      checkbox.checked = false;
+    });
   });
 }
 
