@@ -18,6 +18,18 @@ function saveCheckboxState() {
   }
 }
 
+// Funzione per aggiornare lo sfondo in base allo stato della checkbox
+function updateExerciseBackground(checkbox) {
+  const exerciseDiv = checkbox.closest(".exercise");
+  if (checkbox.checked) {
+    exerciseDiv.style.backgroundColor = "green"; // Sfondo verde se selezionato
+    exerciseDiv.style.color = "white";
+  } else {
+    exerciseDiv.style.backgroundColor = ""; // Rimuove il colore se deselezionato
+    exerciseDiv.style.color = "black";
+  }
+}
+
 // Funzione per caricare gli esercizi da localStorage e mostrarli
 function loadExercises() {
   const userName = getCurrentUser();
@@ -62,6 +74,10 @@ function loadExercises() {
         </label>
           `;
     document.getElementById("exercise-list").appendChild(exerciseDiv);
+
+    // Aggiorna lo sfondo iniziale basato sullo stato salvato
+    const checkbox = exerciseDiv.querySelector(".exercise-checkbox");
+    updateExerciseBackground(checkbox);
   });
 
   // Creazione del bottone di reset
@@ -80,13 +96,17 @@ function loadExercises() {
     const checkboxes = document.querySelectorAll(".exercise-checkbox");
     checkboxes.forEach((checkbox) => {
       checkbox.checked = false;
+      updateExerciseBackground(checkbox); // Aggiorna lo sfondo
     });
     saveCheckboxState(); // **AGGIORNAMENTO STATO**
   });
 
-  // Salvataggio dello stato quando un checkbox viene cliccato
+  // Salvataggio dello stato e aggiornamento sfondo quando un checkbox viene cliccato
   document.querySelectorAll(".exercise-checkbox").forEach((checkbox) => {
-    checkbox.addEventListener("change", saveCheckboxState); // **EVENTO**
+    checkbox.addEventListener("change", () => {
+      saveCheckboxState(); // **EVENTO**
+      updateExerciseBackground(checkbox); // **AGGIORNAMENTO SFONDO**
+    });
   });
 }
 
