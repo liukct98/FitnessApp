@@ -19,7 +19,14 @@
         <h1 style="margin-top: 0;">Esercizi Mercoledi</h1>
     </div>
     <hr>
-    <div class="div-mEsercizi" id="exercise-list"></div>
+    <div id="exercise-carousel">
+        <div class="carousel-slide" id="exercise-list"></div>
+    </div>
+    <button class="carousel-button left" onclick="prevSlide()">&#10094;</button>
+    <button class="carousel-button right" onclick="nextSlide()">&#10095;</button>
+    <div id="reset-container">
+        <button id="reset-button">Reset</button>
+    </div>
 
 
     <script src="mercolediHome.js"></script>

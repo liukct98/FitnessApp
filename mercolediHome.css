@@ -41,15 +41,53 @@ li {
   margin-bottom: 20px;
 }
 
-label {
+.div-checkbox {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 20px;
   font-size: 20px;
-  cursor: pointer;
   gap: 5px;
 }
 .exercise-checkbox {
   transform: scale(1.5);
+  cursor: pointer;
+}
+#exercise-carousel {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+}
+.carousel-slide {
+  min-width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  transition: transform 0.3s ease;
+}
+/* Bottoni per il carosello */
+.carousel-button {
+  position: absolute;
+  top: 35%;
+  /* transform: translateY(-100%); */
+  margin: 15px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border-radius: 30px;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 10;
+}
+.carousel-button.left {
+  left: 10x;
+}
+.carousel-button.right {
+  right: 7px;
+}
+#reset-button {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  transform: scale(1.5);
+  margin-left: 10px;
+  color: black;
 }
