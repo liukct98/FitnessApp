@@ -9,8 +9,9 @@ body {
   align-items: center;
 }
 h1 {
-  background-color: black; /* Colore di sfondo */
+  background-color: #333;
   color: white; /* Colore del testo */
+  border: 1px solid white;
   display: inline-block; /* Adatta la dimensione del contenitore al testo */
   text-align: center; /* Centra il testo orizzontalmente */
   padding: 10px; /* Spazio interno per maggiore leggibilità */
