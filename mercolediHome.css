@@ -1,10 +1,20 @@
 body {
   font-family: Arial, sans-serif;
+  background-image: url(res/sfondo.jpg);
+  background-size: 100vw 100vh;
 }
 .headMercoledi {
   display: flex;
   justify-content: center;
-  margin-top: 0px;
+  align-items: center;
+}
+h1 {
+  background-color: black; /* Colore di sfondo */
+  color: white; /* Colore del testo */
+  display: inline-block; /* Adatta la dimensione del contenitore al testo */
+  text-align: center; /* Centra il testo orizzontalmente */
+  padding: 10px; /* Spazio interno per maggiore leggibilità */
+  border-radius: 4px;
 }
 
 .Bmodifica {
@@ -39,6 +49,7 @@ li {
   text-align: center;
   border: 2px solid black;
   margin-bottom: 20px;
+  background-color: white;
 }
 
 .div-checkbox {
@@ -86,8 +97,8 @@ li {
 }
 #reset-button {
   margin-top: 20px;
-  margin-bottom: 20px;
+  border-radius: 4px;
   transform: scale(1.5);
-  margin-left: 10px;
+  margin-left: 15px;
   color: black;
 }
