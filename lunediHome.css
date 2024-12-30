@@ -72,6 +72,8 @@ li {
   width: 100%;
 }
 .carousel-slide {
+  flex: 0 0 100%; /* Ogni slide occupa il 100% della larghezza */
+  transition: opacity 0.5s ease, transform 0.5s ease; /* Transizioni per opacità e movimento */
   min-width: 100%;
   box-sizing: border-box;
   padding: 10px;
@@ -103,4 +105,29 @@ li {
   transform: scale(1.5);
   margin-left: 15px;
   color: rgb(0, 0, 0);
+}
+.exercise-list {
+  overflow: hidden;
+  position: relative;
+}
+
+/* Aggiungi un'animazione per l'apparizione delle slide */
+.carousel-slide-enter {
+  opacity: 0;
+  transform: translateX(100%); /* La slide entra da destra */
+}
+
+.carousel-slide-enter-active {
+  opacity: 1;
+  transform: translateX(0); /* La slide si sposta nella posizione finale */
+}
+
+.carousel-slide-exit {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.carousel-slide-exit-active {
+  opacity: 0;
+  transform: translateX(-100%); /* La slide esce a sinistra */
 }

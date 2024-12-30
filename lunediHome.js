@@ -95,7 +95,7 @@ function updateCarouselContent(index) {
         ? `<img src="${exercise.image}" alt="Immagine Esercizio" style="max-width: 200px;">`
         : ""
     }
-    <div class= "div-checkbox">
+    <div class="div-checkbox">
       <input type="checkbox" class="exercise-checkbox" ${
         savedCheckboxStates[index] ? "checked" : ""
       }>
@@ -157,6 +157,45 @@ function prevSlide() {
   }
 }
 
+// Variabili per il rilevamento dello swipe
+let touchStartX = 0;
+let touchEndX = 0;
+
+// Funzione per gestire l'inizio del tocco
+function handleTouchStart(event) {
+  touchStartX = event.touches[0].clientX;
+}
+
+// Funzione per gestire la fine del tocco
+function handleTouchEnd(event) {
+  touchEndX = event.changedTouches[0].clientX;
+  handleSwipe();
+}
+
+// Funzione per determinare la direzione dello swipe
+function handleSwipe() {
+  const swipeDistance = touchEndX - touchStartX;
+  const swipeThreshold = 50; // Distanza minima per considerare un gesto come swipe
+
+  if (swipeDistance > swipeThreshold) {
+    // Swipe verso destra
+    prevSlide();
+  } else if (swipeDistance < -swipeThreshold) {
+    // Swipe verso sinistra
+    nextSlide();
+  }
+}
+
+// Associa gli eventi touch al carosello
+function enableSwipe() {
+  const carousel = document.querySelector("#exercise-list");
+
+  if (!carousel) return;
+
+  carousel.addEventListener("touchstart", handleTouchStart);
+  carousel.addEventListener("touchend", handleTouchEnd);
+}
+
 // Funzione per caricare gli esercizi da localStorage
 function loadExercises() {
   const userName = getCurrentUser();
@@ -181,6 +220,7 @@ function loadExercises() {
   // document.querySelector("#next-button").addEventListener("click", nextSlide);
 
   setupResetButton();
+  enableSwipe(); // Abilita lo swipe
 }
 
 // Carica gli esercizi quando la pagina viene caricata
