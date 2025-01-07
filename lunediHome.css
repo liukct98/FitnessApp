@@ -131,3 +131,24 @@ li {
   opacity: 0;
   transform: translateX(-100%); /* La slide esce a sinistra */
 }
+.div-timer {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  background-color: black;
+  padding: 40px;
+  padding-top: 0;
+}
+.exercise-timer {
+  color: yellow;
+  font-size: x-large;
+  font-weight: 700;
+  width: 100px;
+  align-self: center;
+}
+.start-timer-button {
+  margin-top: 13px;
+  width: 100px;
+  font-weight: 700;
+  align-self: center;
+}

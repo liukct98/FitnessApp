@@ -17,6 +17,7 @@ h1 {
   padding: 10px; /* Spazio interno per maggiore leggibilità */
   border-radius: 4px;
 }
+
 .Bmodifica {
   padding: 10px;
   margin: 5px;
@@ -70,6 +71,8 @@ li {
   width: 100%;
 }
 .carousel-slide {
+  flex: 0 0 100%; /* Ogni slide occupa il 100% della larghezza */
+  transition: opacity 0.5s ease, transform 0.5s ease; /* Transizioni per opacità e movimento */
   min-width: 100%;
   box-sizing: border-box;
   padding: 10px;
@@ -101,4 +104,52 @@ li {
   transform: scale(1.5);
   margin-left: 15px;
   color: black;
+}
+
+.exercise-list {
+  overflow: hidden;
+  position: relative;
+}
+
+/* Aggiungi un'animazione per l'apparizione delle slide */
+.carousel-slide-enter {
+  opacity: 0;
+  transform: translateX(100%); /* La slide entra da destra */
+}
+
+.carousel-slide-enter-active {
+  opacity: 1;
+  transform: translateX(0); /* La slide si sposta nella posizione finale */
+}
+
+.carousel-slide-exit {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.carousel-slide-exit-active {
+  opacity: 0;
+  transform: translateX(-100%); /* La slide esce a sinistra */
+}
+
+.div-timer {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  background-color: black;
+  padding: 40px;
+  padding-top: 0;
+}
+.exercise-timer {
+  color: yellow;
+  font-size: x-large;
+  font-weight: 700;
+  width: 100px;
+  align-self: center;
+}
+.start-timer-button {
+  margin-top: 13px;
+  width: 100px;
+  font-weight: 700;
+  align-self: center;
 }

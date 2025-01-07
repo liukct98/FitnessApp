@@ -1,3 +1,7 @@
+let currentSlide = 0;
+let exercises = [];
+let activeTimers = {}; // Oggetto per gestire i timer attivi
+
 function getCurrentUser() {
   return localStorage.getItem("username");
 }
@@ -69,9 +73,6 @@ function updateExerciseBackground(checkbox) {
   }
 }
 
-let currentSlide = 0;
-let exercises = [];
-
 // Funzione per aggiornare il contenuto del carosello
 function updateCarouselContent(index) {
   const exerciseList = document.querySelector("#exercise-list");
@@ -101,6 +102,16 @@ function updateCarouselContent(index) {
       }>
       Fatto
     </div>
+    <div class="div-timer">
+    <h3 class="title-timer" style="color:white"> Timer Riposo </h3>
+    <span id="timer-${index}" class="exercise-timer">${
+    activeTimers[index]?.remainingTime !== undefined
+      ? formatTime(activeTimers[index].remainingTime)
+      : formatTime(exercise.sec)
+  }</span>
+      <button class="start-timer-button" style="background-color: #00e0f4cb; color: white"; data-index="${index}">Avvia</button>
+      </div>
+    </div>
   `;
 
   exerciseList.appendChild(exerciseDiv);
@@ -114,6 +125,67 @@ function updateCarouselContent(index) {
     saveCheckboxState();
     updateExerciseBackground(checkbox);
   });
+  const timerButton = exerciseDiv.querySelector(".start-timer-button");
+  timerButton.addEventListener("click", () => startTimer(index, exercise.sec));
+
+  // Se il timer è attivo, aggiorna dinamicamente il tempo
+  if (activeTimers[index]?.intervalId) {
+    resumeTimer(index);
+  }
+}
+function resumeTimer(index) {
+  const timerElement = document.getElementById(`timer-${index}`);
+  const { remainingTime, intervalId } = activeTimers[index];
+
+  if (!intervalId) return;
+
+  const updateInterval = setInterval(() => {
+    const currentTimer = activeTimers[index];
+    if (currentTimer && currentTimer.remainingTime > 0) {
+      timerElement.textContent = formatTime(currentTimer.remainingTime);
+    } else {
+      clearInterval(updateInterval);
+    }
+  }, 1000);
+
+  // Salva l'aggiornamento per evitare duplicati
+  activeTimers[index].updateInterval = updateInterval;
+}
+
+function startTimer(index, duration) {
+  const timerElement = document.getElementById(`timer-${index}`);
+  let remainingTime = activeTimers[index]?.remainingTime ?? duration;
+
+  if (activeTimers[index]?.intervalId) {
+    // Timer già in esecuzione, non fare nulla
+    return;
+  }
+
+  const button = document.querySelector(
+    `.start-timer-button[data-index="${index}"]`
+  );
+  button.disabled = true;
+
+  const intervalId = setInterval(() => {
+    if (remainingTime > 0) {
+      remainingTime--;
+      timerElement.textContent = formatTime(remainingTime);
+      activeTimers[index] = { remainingTime, intervalId };
+    } else {
+      clearInterval(intervalId);
+      timerElement.textContent = "Finito!";
+      button.disabled = false;
+      delete activeTimers[index]; // Rimuove il timer completato
+    }
+  }, 1000);
+
+  activeTimers[index] = { remainingTime, intervalId };
+}
+
+function formatTime(seconds) {
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = seconds % 60;
+  return `${minutes}:${remainingSeconds.toString().padStart(2, "0")}`;
 }
 
 // Funzioni per navigare tra le slide
@@ -156,6 +228,37 @@ function prevSlide() {
     }
   }
 }
+let touchStartX = 0;
+let touchEndX = 0;
+
+function handleTouchStart(event) {
+  touchStartX = event.touches[0].clientX;
+}
+
+function handleTouchEnd(event) {
+  touchEndX = event.changedTouches[0].clientX;
+  handleSwipe();
+}
+
+function handleSwipe() {
+  const swipeDistance = touchEndX - touchStartX;
+  const swipeThreshold = 50;
+
+  if (swipeDistance > swipeThreshold) {
+    prevSlide();
+  } else if (swipeDistance < -swipeThreshold) {
+    nextSlide();
+  }
+}
+
+function enableSwipe() {
+  const carousel = document.querySelector("#exercise-list");
+
+  if (!carousel) return;
+
+  carousel.addEventListener("touchstart", handleTouchStart);
+  carousel.addEventListener("touchend", handleTouchEnd);
+}
 
 // Funzione per caricare gli esercizi da localStorage
 function loadExercises() {
@@ -177,12 +280,12 @@ function loadExercises() {
 
   // Mostra la prima slide
   showSlide(0);
+  setupResetButton();
+  enableSwipe();
 
   // Collega i pulsanti di navigazione
   // document.querySelector("#prev-button").addEventListener("click", prevSlide);
   // document.querySelector("#next-button").addEventListener("click", nextSlide);
-
-  setupResetButton();
 }
 
 // Carica gli esercizi quando la pagina viene caricata
